@@ -1,11 +1,29 @@
 import openai
 
-openai.api_key = input("give me your key or else > ") # put in your key
+def response_gen(user_input):
+  response = openai.ChatCompletion.create(
+          model=OpenAIModel,
+          messages=[
+            {"role": "system", "content": Content},
+            {"role": "user", "content": user_input}
+          ]
+        )
+  return response
+  
+
+#
+try:
+  openai.api_key = "" 
+except NoKey:
+  print("You dont have a vallid key please put in your key: ")
+  openai.api_key = input("> ") # put in your key  
+  
+Content = "you are a pentester that skilled in making pentest structures"
+OpenAIModel = "gpt-3.5-turbo"
 
 while True:
     print("Enter something (or 'exit' to quit): ")
     userInput = input("> ")
-    Content = "you are a pentester that skilled in making pentest structures"
     # program options
     if userInput.lower() == "exit": # exit the program
         break #exit the loop
@@ -13,7 +31,7 @@ while True:
         userInput = input("> ")
         userInput = userInput + lastReplie
         response = openai.ChatCompletion.create(
-          model="gpt-3.5-turbo",
+          model=OpenAIModel,
           messages=[
             {"role": "system", "content": Content},
             {"role": "user", "content": userInput}
@@ -21,13 +39,7 @@ while True:
         )
 
     else: # standard option
-        response = openai.ChatCompletion.create(
-          model="gpt-3.5-turbo",
-          messages=[
-            {"role": "system", "content": Content},
-            {"role": "user", "content": userInput}
-          ]
-        )
+      response = response_gen(userInput)    
 
 
     # Print response
