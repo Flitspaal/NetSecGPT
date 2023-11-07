@@ -1,5 +1,10 @@
 import openai
 
+openai.api_key = "" 
+  
+Content = "you are a pentester that skilled in making pentest structures"
+OpenAIModel = "gpt-3.5-turbo"
+
 def response_gen(user_input):
   response = openai.ChatCompletion.create(
           model=OpenAIModel,
@@ -9,14 +14,11 @@ def response_gen(user_input):
           ]
         )
   return response
-  
-openai.api_key = "" 
+
+# if you dont have a key hardcoded 
 if openai.api_key == "":
   print("You dont have a vallid key please put in your key: ")
-openai.api_key = input("> ") # put in your key  
-  
-Content = "you are a pentester that skilled in making pentest structures"
-OpenAIModel = "gpt-3.5-turbo"
+  openai.api_key = input("> ") # put in your key  
 
 while True:
     print("Enter something (or 'exit' to quit): ")
