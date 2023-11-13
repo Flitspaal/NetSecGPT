@@ -1,6 +1,6 @@
 import openai
 from Welcome import banner,intro
-from Prompts.py import Intro_Prompt,Prompt
+from Prompts import Intro_Prompt,Prompt
 
 print(banner)
 print(intro)
