@@ -3,7 +3,7 @@ import openai
 from welkom import banner, introductie, text_block
 from vragen_set_1 import hoofdvragen, subvragen_sets
 
-openai.api_key = "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"
+openai.api_key = "key"
 
 print(banner + introductie)
 
