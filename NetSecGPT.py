@@ -1,10 +1,21 @@
 import openai
-from Welkom.py import banner
+from Welcome import banner,intro
+from Prompts.py import Intro_Prompt,Prompt
+
+print(banner)
+print(intro)
 
 openai.api_key = ""
   
 Content = "you are a pentester that skilled in making pentest structures"
 OpenAIModel = "gpt-3.5-turbo"
+
+def test_openai_connection():
+    try:
+        openai.Engine.list()
+        return True
+    except openai.error.OpenAIError:
+        return False
 
 def response_gen(user_input):
   response = openai.ChatCompletion.create(
@@ -20,6 +31,11 @@ def response_gen(user_input):
 if openai.api_key == "":
   print("You dont have a vallid key please put in your key: ")
   openai.api_key = input("> ") # put in your key  
+
+#test connection  
+if not test_openai_connection():
+  print("\033[91mAn issue ocurred while testing the Connection\033[0m")
+  exit()
 
 while True:
     print("Enter something (or 'exit' to quit): ")
