@@ -1,6 +1,6 @@
 import openai
 
-openai.api_key = "" 
+openai.api_key = ""
   
 Content = "you are a pentester that skilled in making pentest structures"
 OpenAIModel = "gpt-3.5-turbo"
