@@ -10,13 +10,6 @@ openai.api_key = ""
 Content = "you are a pentester that skilled in making pentest structures"
 OpenAIModel = "gpt-3.5-turbo"
 
-def test_openai_connection():
-    try:
-        openai.Engine.list()
-        return True
-    except openai.error.OpenAIError:
-        return False
-
 def response_gen(user_input):
   response = openai.ChatCompletion.create(
           model=OpenAIModel,
@@ -29,16 +22,11 @@ def response_gen(user_input):
 
 # if you dont have a key hardcoded 
 if openai.api_key == "":
-  print("You dont have a vallid key please put in your key: ")
+  print("\033[32mPlease enter a valid secret key: \033[0m")
   openai.api_key = input("> ") # put in your key  
 
-#test connection  
-if not test_openai_connection():
-  print("\033[91mAn issue ocurred while testing the Connection\033[0m")
-  exit()
-
 while True:
-    print("Enter something (or 'exit' to quit): ")
+    print("\033[32mEnter something (or 'exit' to quit): \033[0m")
     userInput = input("> ")
     # program options
     if userInput.lower() == "exit": # exit the program
@@ -54,4 +42,4 @@ while True:
     print(response.choices[0].message['content'])
     lastReplie = response.choices[0].message['content']
 
-print("thanks for using GPTest") 
+print("\033[34mthanks for using GPTest\033[0m") 

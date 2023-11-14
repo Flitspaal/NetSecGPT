@@ -15,6 +15,6 @@ ___________________________________________________
 
 intro =  """
 \033[34m
-Made by Group A For Mike Gilhespy                                        
+Made by Group A For Mike Gilhespy ©                                       
 \033[0m
 """
