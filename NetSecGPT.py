@@ -5,8 +5,9 @@ from Prompts import Intro_Prompt,Prompt
 print(banner)
 print(intro)
 
+interaction_count = 0
 openai.api_key = ""
-  
+
 Content = "you are a pentester that skilled in making pentest structures"
 OpenAIModel = "gpt-3.5-turbo"
 
@@ -27,7 +28,7 @@ if openai.api_key == "":
 
 while True:
     print("\033[32mEnter something (or 'exit' to quit): \033[0m")
-    userInput = input("> ")
+    userInput = input(f"\033[32m{interaction_count}>\033[0m ")
     # program options
     if userInput.lower() == "exit": # exit the program
         break #exit the loop
@@ -41,5 +42,6 @@ while True:
     # Print response
     print(response.choices[0].message['content'])
     lastReplie = response.choices[0].message['content']
+    interaction_count = interaction_count + 1 # add an interaction to the counter
 
 print("\033[34mthanks for using GPTest\033[0m") 
