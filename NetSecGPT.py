@@ -14,6 +14,7 @@ openai.api_key = ""
 # Methods:
 def select_model():
   global model_used
+  model_used = 0
   global Content
   global OpenAIModel
   
@@ -32,9 +33,9 @@ def select_model():
     OpenAIModel = input("> ")   
   if using_model == "GPT4All": #GPT4ALL
     model_used = 2
-    gpt4all.GPT4All("ggml-v3-13b-hermes-q5_1.bin")
-    
+    gpt4all.GPT4All("ggml-v3-13b-hermes-q5_1.bin")   
   if model_used == 0 or model_used == "":
+      model_used = 0
       print("You have not selected the model you want to use please enter!")
       select_model()
 
