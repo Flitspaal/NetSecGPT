@@ -1,9 +1,8 @@
 import os
 import openai
 from Welcome import banner,intro
-from Prompts import Intro_Prompt,Prompt
+#from Prompts import Intro_Prompt,Prompt
 from gpt4all import GPT4All
-from pathlib import Path
 
 # Better commends plugin used for commenting
 
@@ -21,6 +20,7 @@ def select_model():
   global OpenAIModel
   global model_gpt4all
   global model_path
+  openai_set = {"gpt-3.5-turbo"}
   
   print("\033[32mEnter the model you want to use (OpenAI or Gpt4All): \033[0m")
   using_model = input("> ")
@@ -29,11 +29,15 @@ def select_model():
   if using_model == "OpenAI": # OPENAI
     model_used = 1
     Content = "you are a pentester that skilled in making pentest structures"
-    
     # if you dont have a key hardcoded 
     api_key()
     
-    print("\033[32mSelect the OpenAi model you want to use (gpt-3.5-turbo)\033[0m") 
+    print("\033[32mSelect the OpenAi model you want to use\033[0m")
+    i = 0
+    for x in openai_set:
+      i = i + 1
+      print(f"\033[32m{i}>\033[0m ",f"\033[32m{x}>\033[0m ")
+      
     OpenAIModel = input("> ")   
   if using_model == "Gpt4All": #GPT4ALL
     model_used = 2
