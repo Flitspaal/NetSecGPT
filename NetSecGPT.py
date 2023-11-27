@@ -4,8 +4,7 @@ from Welcome import banner,intro
 #from Prompts import Intro_Prompt,Prompt
 from gpt4all import GPT4All
 
-# Better commends plugin used for commenting
-
+#To make it look cool :)
 print(banner)
 print(intro)
 
@@ -38,7 +37,10 @@ def select_model():
       i = i + 1
       print(f"\033[32m{i}>\033[0m ",f"\033[32m{x}>\033[0m ")
       
-    OpenAIModel = input("> ")   
+    OpenAIModel = input("> ")
+    while not OpenAIModel or OpenAIModel not in openai_set: #check if model exists and is usable in this program
+      print("\033[32mPlease give a vallid OpenAI model: \033[0m")
+      OpenAIModel = input("> ")
   if using_model == "Gpt4All": #GPT4ALL
     model_used = 2
     model_gpt4all = GPT4All(model_name="nous-hermes-llama2-13b.Q4_0.gguf")
