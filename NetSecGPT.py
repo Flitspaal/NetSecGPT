@@ -10,17 +10,26 @@ print(intro)
 interaction_count = 0
 openai.api_key = ""
 
+global model_used
+global Content
+global OpenAIModel
+global model_gpt4all
+global model_path
+global system_template
+    
 # Methods:
 def select_model():
-  # Setting globaly used variables
+  
   global model_used
-  model_used = 0
   global Content
   global OpenAIModel
   global model_gpt4all
   global model_path
   global system_template
+  
+  model_used = 0
   system_template = "As a CTF security expert, your role will be to provide guidance on security challenges and potential vulnerabilities in CTF competitions. This may include reviewing challenges to identify potential exploits or vulnerabilities, suggesting ways to improve the security of the challenges and the competition as a whole, and recommending tools or techniques that can be used to detect and prevent potential threats. Your expertise in network security and CTF competitions will be particularly valuable in ensuring that the competition is conducted in a secure and controlled manner.I will provide you with some problem scenarios later. You need to find solutions and methods for me based on the scenarios."
+  # Setting globaly used variables
   openai_set = {"gpt-3.5-turbo",
                 "gpt-4"} # contains all usable OpenAI models
   gpt4all_set = {"nous-hermes-llama2-13b.Q4_0.gguf",
@@ -44,12 +53,12 @@ def select_model():
       
     OpenAIModel = input("> ")
     while not OpenAIModel or OpenAIModel not in openai_set: # check if model exists and is usable in this program
-      print("\033[32mPlease give a vallid OpenAI model: \033[0m")
+      print("\033[32mPlease give a valid OpenAI model: \033[0m")
       OpenAIModel = input("> ")
       
   if using_model == "Gpt4All": # GPT4ALL
     model_used = 2
-    print("\033[32mSelect the OpenAi model you want to use: \033[0m")
+    print("\033[32mSelect the GPT4ALL model you want to use: \033[0m")
     i = 0
     for x in gpt4all_set:
       i = i + 1
@@ -57,7 +66,7 @@ def select_model():
       
     gpt4all_model = input("> ")
     while not gpt4all_model or gpt4all_model not in gpt4all_set: # check if model exists and is usable in this program
-      print("\033[32mPlease give a vallid GPT4ALL model: \033[0m")
+      print("\033[32mPlease give a valid GPT4ALL model: \033[0m")
       gpt4all_model = input("> ")
     model_gpt4all = GPT4All(model_name=gpt4all_model)
     
@@ -72,7 +81,7 @@ def api_key():
     openai.api_key = input("> ") # put in your key
     
   else:
-    print("valit key has been found")
+    print("a valit key has been found")
     
 def response_gen(user_input):
   if model_used == 1:
