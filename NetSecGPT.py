@@ -19,7 +19,13 @@ def select_model():
   global OpenAIModel
   global model_gpt4all
   global model_path
-  openai_set = {"gpt-3.5-turbo"} # contains all usable OpenAI models
+  global system_template
+  system_template = "As a CTF security expert, your role will be to provide guidance on security challenges and potential vulnerabilities in CTF competitions. This may include reviewing challenges to identify potential exploits or vulnerabilities, suggesting ways to improve the security of the challenges and the competition as a whole, and recommending tools or techniques that can be used to detect and prevent potential threats. Your expertise in network security and CTF competitions will be particularly valuable in ensuring that the competition is conducted in a secure and controlled manner.I will provide you with some problem scenarios later. You need to find solutions and methods for me based on the scenarios."
+  openai_set = {"gpt-3.5-turbo",
+                "gpt-4"} # contains all usable OpenAI models
+  gpt4all_set = {"nous-hermes-llama2-13b.Q4_0.gguf",
+                 "orca-2-13b.Q4_0.gguf",
+                 "wizardlm-13b-v1.2.Q4_0.gguf"} # gpt4all models
   
   print("\033[32mEnter the model you want to use (OpenAI or Gpt4All): \033[0m")
   using_model = input("> ")
@@ -27,7 +33,6 @@ def select_model():
   # model selection
   if using_model == "OpenAI": # OPENAI
     model_used = 1
-    Content = "you are a pentester that skilled in making pentest structures"
     # if you dont have a key hardcoded 
     api_key()
     
@@ -44,7 +49,17 @@ def select_model():
       
   if using_model == "Gpt4All": # GPT4ALL
     model_used = 2
-    model_gpt4all = GPT4All(model_name="nous-hermes-llama2-13b.Q4_0.gguf")
+    print("\033[32mSelect the OpenAi model you want to use: \033[0m")
+    i = 0
+    for x in gpt4all_set:
+      i = i + 1
+      print(f"\033[32m{i}>\033[0m ",f"\033[32m{x}\033[0m ")
+      
+    gpt4all_model = input("> ")
+    while not gpt4all_model or gpt4all_model not in gpt4all_set: # check if model exists and is usable in this program
+      print("\033[32mPlease give a vallid GPT4ALL model: \033[0m")
+      gpt4all_model = input("> ")
+    model_gpt4all = GPT4All(model_name=gpt4all_model)
     
   if model_used == 0 or model_used == "":
       model_used = 0
@@ -64,17 +79,19 @@ def response_gen(user_input):
     response = openai.ChatCompletion.create(
             model=OpenAIModel,
             messages=[
-              {"role": "system", "content": Content},
+              {"role": "system", "content": system_template},
               {"role": "user", "content": user_input}
             ]
           )
   
   if model_used == 2:
-    # print("This implementation does not excist yet!")
-    response = model_gpt4all.generate(user_input)
+    prompt_template = 'USER: {0}\nASSISTANT: '
+    first_input = system_template + prompt_template.format(user_input[0])
+    response = model_gpt4all.generate(first_input, temp=0)
     print(response)
   return response
-  
+
+# main code loop:  
 select_model()
 
 while True:
@@ -89,7 +106,6 @@ while True:
         response = response_gen(user_input)
     else: # standard option
       response = response_gen(user_input)    
-
     # Print response
     if model_used == 1:
       print(response.choices[0].message['content'])
