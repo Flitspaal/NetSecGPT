@@ -10,12 +10,9 @@ print(intro)
 interaction_count = 0
 openai.api_key = ""
 
-global model_used
-global Content
-global OpenAIModel
-global model_gpt4all
-global model_path
-global system_template
+options_set = {"exit",
+               "reply",
+               "help"}
     
 # Methods:
 def select_model():
@@ -104,7 +101,10 @@ def response_gen(user_input):
 select_model()
 
 while True:
-    print("\033[32mEnter something (or 'exit' to quit): \033[0m")
+    print("\033[32mChoose one of the following options or give new information: \033[0m")
+    for x in options_set:
+      i = i + 1
+      print(f"\033[32m{i}>\033[0m ",f"\033[32m{x}\033[0m ")
     user_input = input(f"\033[32m{interaction_count}>\033[0m ")
     # program options
     if user_input.lower() == "exit": # exit the program
@@ -113,6 +113,8 @@ while True:
         user_input = input("> ")
         user_input = user_input + last_replie
         response = response_gen(user_input)
+    if user_input.lower() == "help":
+      print("text")
     else: # standard option
       response = response_gen(user_input)    
     # Print response
