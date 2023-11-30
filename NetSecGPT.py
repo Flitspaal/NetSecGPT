@@ -2,6 +2,7 @@ import os
 import openai
 from Welcome import banner,intro
 from gpt4all import GPT4All
+from pymongo import MongoClient
 
 # To make it look cool :)
 print(banner)
@@ -97,8 +98,17 @@ def response_gen(user_input):
     print(response)
   return response
 
-# main code loop:  
+# connection to the database (just a test)
+def database_conection():
+  client = MongoClient("mongodb://127.0.0.1:27017/")
+  mydb=client["VectorGPT"]
+  info=mydb.VectorGPT
+  print(info)
+
+# main code loop: 
+# database_conection() 
 select_model()
+
 
 while True:
     print("\033[32mChoose one of the following options or give new information: \033[0m")
