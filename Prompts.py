@@ -10,11 +10,17 @@ Intro_Prompt =  """
 """
 
 Structure_prompt =  """
-\033
-        1.	How many web applications are being assessed?
-        2.	How many login systems are being assessed?
-        3.	Will there be any kind of documentation? 
-                1.	If yes, what kind of documentation?
-        4.	Does the client want fuzzing performed against this application?                      
-\033[0m
+this structure is used in storing data that has been found. please update this if anything
+        1.	Research phase
+                1.1.    Information gathering
+                        1.1.1. Nmap
+                        1.1.2. etc ....
+                1.2.    possible vulnerabilitys
+                        1.2.1. xss
+                        1.2.2. magic url
+                        1.2.3. etc ....
+        2.      Exploiting phase
+                2.1.    exploit found vulnerabilitys
+                        2.2.1.
+                              
 """
