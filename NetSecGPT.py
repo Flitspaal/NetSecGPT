@@ -1,8 +1,8 @@
 import os
 import openai
 from Welcome import banner,intro
+from Prompts import Structure_prompt
 from gpt4all import GPT4All
-from pymongo import MongoClient
 
 # To make it look cool :)
 print(banner)
@@ -52,7 +52,7 @@ def select_model():
     OpenAIModel = input("> ")
     while not OpenAIModel or OpenAIModel not in openai_set: # check if model exists and is usable in this program
       print("\033[32mPlease give a valid OpenAI model: \033[0m")
-      OpenAIModel = input("> ")
+      OpenAIModel = input("> ")   
       
   if using_model == "Gpt4All": # GPT4ALL
     model_used = 2
@@ -87,8 +87,9 @@ def response_gen(user_input):
             model=OpenAIModel,
             messages=[
               {"role": "system", "content": system_template},
-              {"role": "user", "content": user_input}
-            ]
+              {"role": "user", "content": user_input},
+            ],
+            temperature=0.7
           )
   
   if model_used == 2:
@@ -101,9 +102,9 @@ def response_gen(user_input):
 # main code loop: 
 select_model()
 
-
 while True:
     print("\033[32mChoose one of the following options or give new information: \033[0m")
+    i = 0
     for x in options_set:
       i = i + 1
       print(f"\033[32m{i}>\033[0m ",f"\033[32m{x}\033[0m ")

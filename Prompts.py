@@ -9,8 +9,12 @@ Intro_Prompt =  """
 \033[0m
 """
 
-Prompt =  """
+Structure_prompt =  """
 \033
-        hi                        
+        1.	How many web applications are being assessed?
+        2.	How many login systems are being assessed?
+        3.	Will there be any kind of documentation? 
+                1.	If yes, what kind of documentation?
+        4.	Does the client want fuzzing performed against this application?                      
 \033[0m
 """

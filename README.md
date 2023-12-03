@@ -1,4 +1,5 @@
 # NetSecGPT
-pip install gpt4all
+Instalation:
+$ pip install gpt4all
+$ pip install OpenAI
 
-pip install 
