@@ -98,15 +98,7 @@ def response_gen(user_input):
     print(response)
   return response
 
-# connection to the database (just a test)
-def database_conection():
-  client = MongoClient("mongodb://127.0.0.1:27017/")
-  mydb=client["VectorGPT"]
-  info=mydb.VectorGPT
-  print(info)
-
 # main code loop: 
-# database_conection() 
 select_model()
 
 
