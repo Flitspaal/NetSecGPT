@@ -79,18 +79,20 @@ def api_key():
     openai.api_key = input("> ") # put in your key
     
   else:
-    print("a valit key has been found")
+    print("a valid key has been found")
     
 def response_gen(user_input):
   if model_used == 1:
-    response = openai.ChatCompletion.create(
-            model=OpenAIModel,
-            messages=[
-              {"role": "system", "content": system_template},
+      system_message = Structure_prompt + "\n" + system_template
+      ##print("DEBUG: System message for OpenAI model:", system_message)  # Debug print
+      response = openai.ChatCompletion.create(
+          model=OpenAIModel,
+          messages=[
+              {"role": "system", "content": system_message},
               {"role": "user", "content": user_input},
-            ],
-            temperature=0.7
-          )
+          ],
+          temperature=0.7
+      )
   
   if model_used == 2:
     prompt_template = 'USER: {0}\nASSISTANT: '
@@ -103,6 +105,7 @@ def response_gen(user_input):
 select_model()
 
 while True:
+    print("\033[32m \nPlease describe the penetration testing task in one line, including the target IP, task type, etc.\033[0m")
     print("\033[32mChoose one of the following options or give new information: \033[0m")
     i = 0
     for x in options_set:
@@ -127,4 +130,4 @@ while True:
     
     interaction_count = interaction_count + 1 # add an interaction to the counter
 
-print("\033[34mthanks for using GPTest\033[0m") 
+print("\n \033[34mThanks for using SecNetGPTest \n \033[0m") 
