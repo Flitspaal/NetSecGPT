@@ -125,6 +125,7 @@ while True:
       response = response_gen(user_input)    
     # Print response
     if model_used == 1:
+      print("\n")
       print(response.choices[0].message['content'])
       last_replie = response.choices[0].message['content']
     
