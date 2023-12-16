@@ -32,7 +32,9 @@ def select_model():
                 "gpt-4"} # contains all usable OpenAI models
   gpt4all_set = {"nous-hermes-llama2-13b.Q4_0.gguf",
                  "orca-2-13b.Q4_0.gguf",
-                 "wizardlm-13b-v1.2.Q4_0.gguf"} # gpt4all models
+                 "wizardlm-13b-v1.2.Q4_0.gguf",
+                 "orca-2-7b.Q4_0.gguf",
+                 "mistral-7b-openorca.Q4_0.gguf"} # gpt4all models
   
   print("\033[32mEnter the model you want to use (OpenAI or Gpt4All): \033[0m")
   using_model = input("> ")
