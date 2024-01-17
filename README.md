@@ -27,6 +27,16 @@ This is an example of how to list things you need to use the software and how to
    git clone https://github.com/Flitspaal/NetSecGPT
    ```
 
+2. Install GPT4All
+   ```sh
+   pip install gpt4all
+   ```
+
+3. Install OpenAI
+   ```sh
+   pip install OpenAI
+   ```
+
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
