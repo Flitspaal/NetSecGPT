@@ -36,7 +36,20 @@ This is an example of how to list things you need to use the software and how to
    ```sh
    pip install OpenAI
    ```
+### Usage
 
+1. Start by choose if you want to use OpenAI or Gpt4All.
+2. Choose the model you want to use. (gpt-4, Orca 2, etc)
+3. Ask away!
+
+### Tips
+
+In your first question make sure to include as many of the knowlege you have beforehand.
+Such as:
+1. The kind of target (For example, A webapp)
+2. The ip.
+3. Ports
+4. etc...
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
