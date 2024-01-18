@@ -51,6 +51,9 @@ Such as:
 3. Ports
 4. etc...
 
+### Disclaimer
+
+This tool is part of a study with AI-powered pentesting and is not meant to be used with unethical intent
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
